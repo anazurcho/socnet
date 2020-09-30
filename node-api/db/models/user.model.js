@@ -10,29 +10,15 @@ const UserSchema = new mongoose.Schema( {
     email: {
             type: String,
             required: true,
-            minlength: 1,
-            trim: true,
-            unique: true
+            unique: true,
+            match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
         },
     password: {
         type: String,
         required: true,
         minlength: 8
     },
-    sessions: [ {
-        token: {
-            type: String,
-            // required: true
-        },
-        expiresAt: {
-            type: Number,
-            required: true
-        }
-    } ],
-    authentificated:{
-        type:Boolean,
-        default:false,
-    }
+    
 } )
 
 const User = mongoose.model( 'User', UserSchema );
